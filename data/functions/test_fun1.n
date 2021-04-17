@@ -1,0 +1,15 @@
+
+import java.lang.System;
+
+int compute_sum(int a, int b)
+{
+    return (a + b);
+}
+
+void main()
+{
+    int a = 2;
+    int b = 1;
+    int c = compute_sum(a, b);
+    System.out.println(c);
+}
