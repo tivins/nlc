@@ -1,0 +1,19 @@
+{
+  "name": "tivins/nlc",
+  "description": "generic parse",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "tivins"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Tivins\\": "src/Tivins"
+    }
+  },
+  "require": {
+    "ext-mbstring": "*"
+  }
+}

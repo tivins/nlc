@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+use Tivins\Abstract\Output;
+use Tivins\Abstract\Output_TTY;
+use Tivins\Parse\Source;
+
+require 'vendor/autoload.php';
+
+Output::set(new output_TTY);
+$file = $argv[1];
+$source = Source::fromFile($file) ;
+if (!$source) {
+  die("cannot parse source\n");
+}
+if (! $source->tokenize()) {
+  die("cannot tokenize\n");
+}
+if (! $source->treefy()) {
+    die("cannot make tree\n");
+}
+$source->dump();

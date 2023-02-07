@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?php
 
+use Tivins\Abstract\Parser;
+
 include __dir__ . '/src/loader.php';
 Output::set(new Output_TTY);
 
@@ -14,11 +16,11 @@ $file = trim($options['f']);
 
 // --------- Parsing
 
-$sources = parse\Source::from_file($file) ;
+$sources = \Tivins\parse\Source::fromFile($file) ;
 if ($source === false) Msg::fatal("Failed to get a valid Source object.");
 $source->tokenize();
 $source->treefy();
-parse\Expression::parse($source->root);
+\Tivins\parse\Expression::parse($source->root);
 
 $parser = new Parser();
 $parser->parse([$sources]);

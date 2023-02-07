@@ -2,8 +2,9 @@
 <?php
 
 
-use \parse\Source;
-use \parse\Expression;
+use Tivins\Abstract\Util;
+use Tivins\parse\Expression;
+use Tivins\parse\Source;
 
 
 include __dir__ . '/src/loader.php';
@@ -123,7 +124,7 @@ function test_file($file, $options, &$success) {
     }
 
     $schema = array_map(function($item) {
-        if (isset($item->type)) $item->type = parse\Token::get_type_from_name($item->type);
+        if (isset($item->type)) $item->type = \Tivins\parse\Token::get_type_from_name($item->type);
         return (array) $item;
     }, $exp_res->expected_results->schema);
 
@@ -131,7 +132,7 @@ function test_file($file, $options, &$success) {
     //# Chargement, parsing du fichier test:
     //--------------------------------------
     $ch_src = Util::chrono_start();
-    $source = Source::from_file($file) ;
+    $source = Source::fromFile($file) ;
     if ($source === false) {
         return Msg::error("Failed to get a valid Source object.");
     }
@@ -170,7 +171,7 @@ function test_file($file, $options, &$success) {
             return false;
         }
 
-        $result = parse\Validator::validate_schema($source->root->next, $schema) ;
+        $result = \Tivins\parse\Validator::validate_schema($source->root->next, $schema) ;
     }
     catch(Exception $ex) {
         Msg::error($ex->getMessage());
